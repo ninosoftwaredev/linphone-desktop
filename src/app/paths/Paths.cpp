@@ -32,9 +32,25 @@
 
 #include "Paths.hpp"
 
-// =============================================================================
+#define PATH_ASSISTANT_CONFIG "/linphone/assistant/"
+#define PATH_AVATARS "/avatars/"
+#define PATH_CAPTURES "/Linphone/captures/"
+#define PATH_CODECS "/codecs/"
+#define PATH_LOGS "/logs/"
+#define PATH_THUMBNAILS "/thumbnails/"
+#define PATH_USER_CERTIFICATES "/usr-crt/"
+
+#define PATH_CALL_HISTORY_LIST "/call-history.db"
+#define PATH_CONFIG "/linphonerc"
+#define PATH_FACTORY_CONFIG "/linphone/linphonerc-factory"
+#define PATH_ROOT_CA "/linphone/rootca.pem"
+#define PATH_FRIENDS_LIST "/friends.db"
+#define PATH_MESSAGE_HISTORY_LIST "/message-history.db"
+#define PATH_ZRTP_SECRETS "/zidcache"
 
 using namespace std;
+
+// -----------------------------------------------------------------------------
 
 namespace {
   constexpr char cPathAssistantConfig[] = "/linphone/assistant/";
@@ -181,6 +197,10 @@ string Paths::getCapturesDirPath () {
   return getWritableDirPath(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + cPathCaptures);
 }
 
+string Paths::getCodecsDirPath () {
+  return ::getWritableDirPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + PATH_CODECS);
+}
+
 string Paths::getConfigFilePath (const QString &configPath, bool writable) {
   const QString path = configPath.isEmpty()
     ? getAppConfigFilePath()
@@ -215,10 +235,6 @@ string Paths::getPackageDataDirPath () {
 
 string Paths::getPackageMsPluginsDirPath () {
   return getReadableDirPath(getAppPackageMsPluginsDirPath());
-}
-
-string Paths::getPluginsDirPath () {
-  return getReadableDirPath(getAppPluginsDirPath());
 }
 
 string Paths::getRootCaFilePath () {

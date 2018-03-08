@@ -4,6 +4,9 @@
 
 .import Linphone 1.0 as Linphone
 
+.import 'qrc:/ui/scripts/LinphoneUtils/linphone-utils.js' as LinphoneUtils
+.import 'qrc:/ui/scripts/Utils/utils.js' as Utils
+
 // =============================================================================
 
 function showVideoPreview (account) {
@@ -22,4 +25,8 @@ function updateVideoPreview () {
 
 function hideVideoPreview () {
   window.detachVirtualWindow()
+}
+
+function handleCodecDownloadRequested (codecInfo) {
+  LinphoneUtils.openCodecOnlineInstallerDialog(window, codecInfo)
 }

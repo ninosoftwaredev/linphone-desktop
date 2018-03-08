@@ -2,13 +2,14 @@ import QtQuick 2.7
 
 import Common 1.0
 import Linphone 1.0
-
+import LinphoneUtils 1.0
 import App.Styles 1.0
 
 // =============================================================================
 
 AssistantAbstractView {
   property var assistantModel
+  property var codecInfo: VideoCodecsModel.getDownloadableCodecInfo("H264")
 
   backEnabled: false
 
@@ -61,9 +62,15 @@ AssistantAbstractView {
 
     onActivateStatusChanged: {
       requestBlock.stop(error)
-      if (!error.length) {
-        window.unlockView()
-        window.setView('Home')
+      if (!error.length && codecInfo.downloadUrl) {
+         LinphoneUtils.openCodecOnlineInstallerDialog(window, codecInfo, function cb(window) {
+           window.unlockView()
+           window.setView('Home')	
+         })
+      }
+      else {
+           window.unlockView()
+           window.setView('Home')
       }
     }
   }

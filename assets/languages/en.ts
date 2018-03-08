@@ -1004,6 +1004,29 @@ your friend&apos;s SIP address or username.</translation>
     </message>
 </context>
 <context>
+    <name>OnlineInstallerDialog</name>
+    <message>
+        <source>confirm</source>
+        <translation>CONFIRM</translation>
+    </message>
+    <message>
+        <source>onlineInstallerExtractingDescription</source>
+        <translation>A file is being extracted.</translation>
+    </message>
+    <message>
+        <source>onlineInstallerDownloadingDescription</source>
+        <translation>A file is being downloaded.</translation>
+    </message>
+    <message>
+        <source>onlineInstallerFinishedDescription</source>
+        <translation>Installation finished!</translation>
+    </message>
+    <message>
+        <source>onlineInstallerFailedDescription</source>
+        <translation>Installation failed!</translation>
+    </message>
+</context>
+<context>
     <name>OutgoingMessage</name>
     <message>
         <source>messageError</source>
@@ -1670,6 +1693,13 @@ your friend&apos;s SIP address or username.</translation>
     <message>
         <source>accept</source>
         <translation>CONFIRM</translation>
+    </message>
+</context>
+<context>
+    <name>linphone-utils</name>
+    <message>
+        <source>downloadCodecDescription</source>
+        <translation>Are you sure you want to download %1 (%2)?</translation>
     </message>
 </context>
 </TS>

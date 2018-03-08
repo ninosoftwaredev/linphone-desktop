@@ -33,6 +33,6 @@ AudioCodecsModel::AudioCodecsModel (QObject *parent) : AbstractCodecsModel(paren
     addCodec(codec);
 }
 
-void AudioCodecsModel::updateCodecs (list<shared_ptr<linphone::PayloadType> > &codecs) {
+void AudioCodecsModel::updateCodecs (list<shared_ptr<linphone::PayloadType>> &codecs) {
   CoreManager::getInstance()->getCore()->setAudioPayloadTypes(codecs);
 }

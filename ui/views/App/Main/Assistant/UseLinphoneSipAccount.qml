@@ -2,6 +2,8 @@ import QtQuick 2.7
 
 import Common 1.0
 import Linphone 1.0
+import LinphoneUtils 1.0
+import Utils 1.0
 
 import App.Styles 1.0
 
@@ -16,6 +18,8 @@ AssistantAbstractView {
   mainActionLabel: qsTr('confirmAction')
 
   title: qsTr('useLinphoneSipAccountTitle')
+
+
 
   // ---------------------------------------------------------------------------
 
@@ -61,7 +65,8 @@ AssistantAbstractView {
 
   AssistantModel {
     id: assistantModel
-
+    property var codecInfo: VideoCodecsModel.getDownloadableCodecInfo("H264")
+    
     function setCountryCode (index) {
       var model = telephoneNumbersModel
       assistantModel.countryCode = model.data(model.index(index, 0)).countryCode
@@ -86,7 +91,11 @@ AssistantAbstractView {
     onLoginStatusChanged: {
       requestBlock.stop(error)
       if (!error.length) {
-        window.setView('Home')
+         if(codecInfo.downloadUrl) 
+			 LinphoneUtils.openCodecOnlineInstallerDialog(window, codecInfo, function cb(window) {
+				window.setView('Home')	
+			})
+         else window.setView('Home')
       }
     }
 
@@ -104,7 +113,9 @@ AssistantAbstractView {
         assistant.pushView('ActivateLinphoneSipAccountWithPhoneNumber', {
           assistantModel: assistantModel
         })
+
       }
+
     }
   }
 
